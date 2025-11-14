@@ -1,0 +1,9 @@
+---
+- name: Load approved patch version
+  ansible.builtin.include_vars:
+    file: "patch_versions/version.yml"
+
+- name: Ensure system matches approved patch version
+  ansible.builtin.yum:
+    name: "*"
+    state: latest

@@ -1,0 +1,19 @@
+---
+- name: Patch RockyLinux in Test Environment
+  hosts: test
+  become: true
+  roles:
+    - patch_os
+    - record_patch_version
+
+- name: Apply Approved Patch Version in Production
+  hosts: prod
+  become: true
+  roles:
+    - apply_patch_version
+
+- name: Rollback Production to Previous Patch Version
+  hosts: prod
+  become: true
+  roles:
+    - rollback_patch

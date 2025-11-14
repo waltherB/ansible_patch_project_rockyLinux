@@ -1,0 +1,6 @@
+[rollback-repo]
+name=Rollback Repository
+baseurl=http://your-repo-server/rollback/
+enabled=1
+gpgcheck=1
+gpgkey=http://your-repo-server/RPM-GPG-KEY

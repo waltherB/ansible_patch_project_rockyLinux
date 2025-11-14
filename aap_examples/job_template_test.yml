@@ -1,0 +1,8 @@
+---
+# Example AAP Job Template
+name: Patch RockyLinux Test
+job_type: run
+inventory: Default
+project: RockyLinux Patch Project
+playbook: site.yml
+limit: test

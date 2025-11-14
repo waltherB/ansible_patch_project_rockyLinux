@@ -1,0 +1,16 @@
+---
+- name: Save patch version to file
+  ansible.builtin.copy:
+    dest: "patch_versions/version.yml"
+    content: "patch_version: {{ patch_version }}"
+
+- name: Commit patch version to Git
+  ansible.builtin.command: git add patch_versions/version.yml
+  args:
+    chdir: "{{ playbook_dir }}"
+
+- name: Commit changes
+  ansible.builtin.command: git commit -m "Updated patch version to {{ patch_version }}"
+  args:
+    chdir: "{{ playbook_dir }}"
+  ignore_errors: true

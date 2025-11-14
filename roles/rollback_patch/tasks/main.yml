@@ -1,0 +1,14 @@
+---
+- name: Load previous patch version
+  ansible.builtin.include_vars:
+    file: "patch_versions/previous_version.yml"
+
+- name: Enable snapshot rollback (requires LVM snapshots)
+  ansible.builtin.command: lvconvert --merge /dev/vg/lv_snapshot
+  ignore_errors: true
+
+- name: Pin repo to previous version
+  ansible.builtin.yum:
+    name: "*"
+    state: present
+    enablerepo: "rollback-repo"

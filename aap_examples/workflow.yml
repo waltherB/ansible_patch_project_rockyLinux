@@ -1,0 +1,10 @@
+---
+# Example AAP Workflow Template
+name: RockyLinux Patch Workflow
+nodes:
+  - name: Patch Test Environment
+    job_template: Patch RockyLinux Test
+  - name: Apply Patch to Production
+    job_template: Apply Approved Patch Version
+    success_nodes:
+      - Patch Test Environment

@@ -1,0 +1,13 @@
+---
+- name: Update all packages to latest
+  ansible.builtin.yum:
+    name: "*"
+    state: latest
+
+- name: Get current OS version
+  ansible.builtin.command: rpm -q --last | head -n 1
+  register: patch_info
+
+- name: Set fact for patch version
+  ansible.builtin.set_fact:
+    patch_version: "{{ patch_info.stdout }}"
